@@ -305,7 +305,10 @@ class Command(BaseCommand):
         username_field = self.UserModel._meta.get_field(self.UserModel.USERNAME_FIELD)
 
         if username_field.null:
-            return f"Error: {verbose_field_name} cannot be null when using the createsuperuser command."
+            return (
+                f"Error: {verbose_field_name} cannot be null when using the "
+                "createsuperuser command."
+            )
 
         if username_field.blank and not username:
             return f"{capfirst(verbose_field_name)} cannot be blank."
